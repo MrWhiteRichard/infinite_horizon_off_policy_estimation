@@ -150,7 +150,7 @@ def weighted_importance_sampling_estimator_stepwise(SASR, policy0, policy1, gamm
 		REW.append(rew)
 	est_reward = 0.0
 	rho = np.exp(Log_policy_ratio)
-	#print 'rho shape = {}'.format(rho.shape)
+	#print( 'rho shape = {}'.format(rho.shape) )
 	REW = np.array(REW)
 	for i in range(REW.shape[0]):
 		est_reward += np.sum(rho[i]/np.mean(rho, axis = 0) * REW[i])/self_normalizer
@@ -162,7 +162,7 @@ def Q_learning(env, num_trajectory, truncate_size, temperature = 2.0):
 
 	state = env.reset()
 	for k in range(20):
-		print 'Training for episode {}'.format(k)
+		print( 'Training for episode {}'.format(k) )
 		for i in range(50):
 			for j in range(5000):
 				action = agent.choose_action(state, temperature)
@@ -172,7 +172,7 @@ def Q_learning(env, num_trajectory, truncate_size, temperature = 2.0):
 		pi = agent.get_pi(temperature)
 		np.save('taxi-policy/pi{}.npy'.format(k), pi)
 		SAS, f, avr_reward = roll_out(n_state, env, pi, num_trajectory, truncate_size)
-		print 'Episode {} reward = {}'.format(k, avr_reward)
+		print( 'Episode {} reward = {}'.format(k, avr_reward) )
 		heat_map(length, f, env, 'heatmap/pi{}.pdf'.format(k))
 
 def heat_map(length, f, env, filename):

@@ -136,7 +136,7 @@ def weighted_importance_sampling_estimator_stepwise(SASR, policy0, policy1):
 		REW.append(rew)
 	est_reward = 0.0
 	rho = np.exp(Log_policy_ratio)
-	#print 'rho shape = {}'.format(rho.shape)
+	#print( 'rho shape = {}'.format(rho.shape) )
 	REW = np.array(REW)
 	for i in range(REW.shape[0]):
 		#est_reward += np.mean(rho[i]/np.maximum(np.mean(rho, axis = 0), 0 )* REW[i])
